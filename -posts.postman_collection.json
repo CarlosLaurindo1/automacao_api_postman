@@ -1,0 +1,286 @@
+{
+	"info": {
+		"_postman_id": "3a17227e-8b97-4fcc-a437-9290816c34e1",
+		"name": "/posts",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16952633"
+	},
+	"item": [
+		{
+			"name": "/posts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code passou\", function () {\r",
+							"pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{link}}posts/",
+					"host": [
+						"{{link}}posts"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/posts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody)\r",
+							"pm.environment.set(\"id_da_publicacao\", jsonData[\"101\"]);\r",
+							"pm.test(\"Status code passou\", function () {\r",
+							"pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": 1,\r\n    \"id\": 101,\r\n    \"title\": \"Testes da API - Carlos\",\r\n    \"body\": \"Aqui quem realizou os testes foi o Carlos. Pensando no processo de testes para apresentar ao PDI e junto ao UNISENAI\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{link}}posts/",
+					"host": [
+						"{{link}}posts"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/posts/{id}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"    //validações do status code\r",
+							"      //Teste de validação de status code\r",
+							"pm.test(\"Status code é 200\", function () {\r",
+							"pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"      //Teste de resposta em texto do status code\r",
+							"pm.test(\"O nome do status code tem o texto: OK\", () => {\r",
+							"pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"  //validações dos cabeçalhos da requisição\r",
+							"      //Teste para verificar a existência de um cabeçalho.\r",
+							"pm.test(\"Content-type está presente nos cabeçalhos\", () => {\r",
+							"pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"  //Validação de desempenho\r",
+							"      //teste de tempo de resposta\r",
+							"pm.test(\"O tempo de resposta é menor que 150ms\", () => {\r",
+							"pm.expect(pm.response.responseTime).to.be.below(150);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"//validações do corpo da resposta\r",
+							"pm.test(\"O response da requisição foi validado.\", () => {\r",
+							"//criação de constante para fazer o parse do JSON\r",
+							"  const respostaDoJson = pm.response.json();\r",
+							"//teste que valida o conteúdo de uma variável\r",
+							"  pm.expect(respostaDoJson.userId).to.eql(1);\r",
+							"//teste que valida o tipo de uma variável\r",
+							"  pm.expect(respostaDoJson.userId).to.be.a(\"number\");\r",
+							"  pm.expect(respostaDoJson.id).to.eql(1);\r",
+							"  pm.expect(respostaDoJson.id).to.be.a(\"number\");\r",
+							"  pm.expect(respostaDoJson.title).to.be.a(\"string\");\r",
+							"  pm.expect(respostaDoJson.title).to.eql(\"sunt aut facere repellat provident occaecati excepturi optio reprehenderit\");\r",
+							"//teste que valida a quantidade de caracteres no conteúdo de uma variável\r",
+							"  pm.expect(respostaDoJson.title).to.have.lengthOf(74);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{link}}posts/1",
+					"host": [
+						"{{link}}posts"
+					],
+					"path": [
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/posts/{id}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code passou\", function () {\r",
+							"pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Atualizando\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{link}}posts/1",
+					"host": [
+						"{{link}}posts"
+					],
+					"path": [
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/patch/{id}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code passou\", function () {\r",
+							"pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Atualizando\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{link}}posts/1",
+					"host": [
+						"{{link}}posts"
+					],
+					"path": [
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/posts/{1}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code passou\", function () {\r",
+							"pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{link}}posts/1",
+					"host": [
+						"{{link}}posts"
+					],
+					"path": [
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
